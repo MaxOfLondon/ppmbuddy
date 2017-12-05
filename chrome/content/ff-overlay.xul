@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://ppmbuddy/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ppmbuddy/locale/overlay.dtd">
+<overlay id="ppmbuddy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="overlay.js"/>
+  <script src="ff-overlay.js"/>
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="ppmbuddy-strings" src="chrome://ppmbuddy/locale/overlay.properties"/>
+  </stringbundleset>
+
+  <menupopup id="menu_ToolsPopup">
+    <menuitem id="ppmbuddy-hello" label="&ppmbuddy.label;"
+              oncommand="ppmbuddy.onMenuItemCommand(event);"/>
+  </menupopup>
+
+  <popup id="contentAreaContextMenu">
+    <menuitem id="context-ppmbuddy" label="&ppmbuddyContext.label;"
+              accesskey="&ppmbuddyContext.accesskey;"
+              insertafter="context-stop"
+              oncommand="ppmbuddy.onMenuItemCommand(event)"/>
+  </popup>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+  <toolbarbutton id="ppmbuddy-toolbar-button" class="toolbarbutton-1 chromeclass-toolbar-additional"
+    label="&ppmbuddyToolbarButton.label;" 
+    tooltiptext="&ppmbuddyToolbarButton.tooltip;"
+    oncommand="ppmbuddy.onToolbarButtonCommand()"
+    defaultset="ppmbuddy-toolbar-button"/>
+  </toolbarpalette>
+
+  <toolbox id="navigator-toolbox">
+    <toolbar class="chromeclass-toolbar" toolbarname="&ppmbuddyToolbar.name;" customizable="true" id="ppmbuddy-toolbar" mode="icons" context="toolbar-context-menu"
+      defaultset="ppmbuddy-toolbar-button" insertbefore="PersonalToolbar">
+      <label value="&ppmbuddyToolbar.label;"/>
+    </toolbar>
+  </toolbox>
+
+
+</overlay>

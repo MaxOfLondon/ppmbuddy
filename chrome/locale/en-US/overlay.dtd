@@ -1,0 +1,8 @@
+<!ENTITY ppmbuddy.label "PPM Buddy">
+<!ENTITY ppmbuddyContext.label "PPM Buddy">
+<!ENTITY ppmbuddyContext.accesskey "Y">
+<!ENTITY ppmbuddyToolbarButton.label "PPM Buddy">
+<!ENTITY ppmbuddyToolbarButton.tooltip "Helps to fill in PPM timesheets">
+<!ENTITY ppmbuddySidebar.label "PPM Buddy">
+<!ENTITY ppmbuddyToolbar.name  "PPM Buddy">
+<!ENTITY ppmbuddyToolbar.label "">

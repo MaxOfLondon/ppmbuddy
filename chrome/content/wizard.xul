@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window id="wizard"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  title="PPM Buddy Wizard">
+  <script type="application/x-javascript" src="chrome://ppmbuddy/content/wizard.js"/>
+  <script>
+<![CDATA[
+    function validateNumberInput(element, min, max, allowDot) {
+       var value=element.value.replace(/[^\d.]/g, '');
+       if (allowDot) {
+       		value = value.replace(/(\d*)\.+/g, '$1.');
+   			value = value.replace(/(\d*)\.(\d*)\./g, '$1.$2');
+       } else {
+       		value = value.replace(/\./g, '');
+       }
+       if (parseInt(value) < min)  value = min;
+       if (parseInt(value) > max) value = max;
+       element.value = value;
+    }
+]]>
+  </script>  
+  <tabbox id="myTabList" selectedIndex="0">
+    <tabs>
+      <tab label="Value Settings"/>
+      <tab label="Date Settings"/>
+    </tabs>
+    <tabpanels>
+      <tabpanel>
+        <groupbox orient="horizontal" flex="1">
+          <vbox>
+              <hbox align="center"> 
+              	<label control="targetHours" value="Working hours in a day:"/><textbox id="targetHours" oninput="validateNumberInput(this, 0.1, 24, true);" value="7.5" size="2"/>
+              	<checkbox id="alowOvertime" label="Overtime hours to be randomly added:" oncommand="document.getElementById('overtimeHours').disabled = !this.checked;" /><textbox id="overtimeHours" oninput="validateNumberInput(this, 0, 12, true);" size="2" value="2" disabled="true"/>
+             </hbox>
+             <hbox align="center">
+                  <label control="resolution" value="Time increment in minutes:" />
+                  <textbox id="resolution" oninput="validateNumberInput(this, 0, 60, false);" value="30" size="2"/>
+	              <checkbox id="keepExisting" label="Keep existing values if &gt; 0.0" checked="true"/>
+	          </hbox>
+            <listbox id="itemList" width="760px" onselect="wizard.loadWeight();">
+              <listhead>
+                <listheader label="Item"/>
+                <listheader label="Weight" width="100px"/>
+              </listhead>
+              <listcols>
+                <listcol flex="1"/>
+                <listcol/>
+              </listcols>
+            </listbox>
+            <hbox>
+              <hbox pack="center" flex="1" align="center">
+                <label control="weight" value="Item Weight:"/>
+                <scale id="weight" min="0" max="10" value="5" increment = "1" onchange="wizard.updateWeight();" disabled="true"/>
+              </hbox>
+              <button is="next" label="Next >>" disabled="false" oncommand="wizard.nextStep(1);"/>
+            </hbox>
+          </vbox>
+        </groupbox>
+      </tabpanel>
+      <tabpanel>
+        <groupbox orient="horizontal" flex="1"  pack="center">
+          <vbox pack="center">
+            <checkbox id="saturdays" label="Fill data for Saturdays" checked="false"/>
+            <checkbox id="sundays" label="Fill data for Sundays" checked="false"/>
+            <spacer height="30px"/>
+            <hbox>
+              <vbox>
+                <label control="datePicker" value="Data fill start date"/>
+                <datepicker id="datePicker" value="" type="grid"/>
+              </vbox>
+              <vbox>
+                <label control="datePicker1" value="Data fill end date"/>
+                <datepicker id="datePicker1" value="" type="grid"/>
+              </vbox>
+            </hbox>
+             <hbox dir="rtl">
+              <button is="finish" label="Finish" disabled="false" oncommand="wizard.nextStep(2);"/>  
+            </hbox>
+          </vbox>
+        </groupbox>
+      </tabpanel>
+    </tabpanels>
+  </tabbox>
+</window>

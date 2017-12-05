@@ -1,0 +1,7 @@
+content   ppmbuddy                 chrome/content/
+skin      ppmbuddy   classic/1.0   chrome/skin/
+locale    ppmbuddy   en-US         chrome/locale/en-US/
+
+
+overlay   chrome://browser/content/browser.xul   chrome://ppmbuddy/content/ff-overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://ppmbuddy/skin/overlay.css
